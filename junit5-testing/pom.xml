@@ -18,7 +18,6 @@
     <properties>
         <java.version>1.8</java.version>
         <micro-simulator.version>1.1.8</micro-simulator.version>
-        <junit5.version>5.4.1</junit5.version>
     </properties>
 
     <dependencies>
@@ -30,18 +29,19 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit5.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit5.version}</version>
         </dependency>
-        <!--<dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit5.version}</version>
-        </dependency>-->
+        </dependency>
         <!--
            The below "micro-simulator" dependency is not needed for real live projects.
            This is used here just to mock/stub some end points for demo purpose only.
@@ -68,11 +68,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>3.0.0-M3</version>
                 <configuration>
+                    <!--<junitPlatformArtifactName>com.github.junit-team.junit5:junit-platform-engine</junitPlatformArtifactName>-->
+                    <!--<properties>-->
+                    <!--<configurationParameters>-->
+                    <!--junit.jupiter.execution.parallel.enabled=true-->
+                    <!--junit.jupiter.execution.parallel.config.strategy=fixed-->
+                    <!--junit.jupiter.execution.parallel.config.fixed.parallelism=2-->
+                    <!--</configurationParameters>-->
+                    <!--</properties>-->
                     <includes>
-                        <!-- <include>org.jsmart.zerocode.testhelp.tests.HelloWorldGitHubSuite</include> -->
-                        <include>org.jsmart.zerocode.zerocodejavaexec.pojo.OrderTest</include>
+                        <include>org.jsmart.zerocode.tests.load.LoadJUnit5ExtendTest</include>
                     </includes>
                 </configuration>
             </plugin>

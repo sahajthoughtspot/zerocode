@@ -59,6 +59,9 @@
 
     <properties>
         <!-- This project properties -->
+        <junit5.version>5.4.1</junit5.version>
+        <junit-platform-runner.version>1.4.0</junit-platform-runner.version>
+        <junit.vintage.version>5.4.1</junit.vintage.version>
         <junit.version>4.12</junit.version>
         <jackson-databind.version>2.9.7</jackson-databind.version>
         <guava.version>23.0</guava.version>
@@ -91,6 +94,26 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-runner</artifactId>
+                <version>${junit-platform-runner.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
+                <version>${junit.vintage.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>

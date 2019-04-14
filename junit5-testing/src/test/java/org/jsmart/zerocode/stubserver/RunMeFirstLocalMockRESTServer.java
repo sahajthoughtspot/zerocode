@@ -1,4 +1,4 @@
-package org.jsmart.zerocode.testhelp.localserver;
+package org.jsmart.zerocode.stubserver;
 
 import org.jsmart.simulator.annotations.ApiRepo;
 import org.jsmart.simulator.impl.JsonBasedSimulator;

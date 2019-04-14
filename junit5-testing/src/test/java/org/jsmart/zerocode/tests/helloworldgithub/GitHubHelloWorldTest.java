@@ -1,4 +1,4 @@
-package org.jsmart.zerocode.testhelp.tests.helloworldgithub;
+package org.jsmart.zerocode.tests.helloworldgithub;
 
 import org.jsmart.zerocode.core.domain.JsonTestCase;
 import org.jsmart.zerocode.core.domain.TargetEnv;
