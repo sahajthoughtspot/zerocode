@@ -5,8 +5,10 @@ import java.util.List;
 import org.jsmart.zerocode.core.domain.builders.ZeroCodeExecResultBuilder;
 import org.jsmart.zerocode.core.domain.builders.ZeroCodeReportBuilder;
 import org.jsmart.zerocode.core.logbuilder.LogCorrelationshipPrinter;
+import org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
+import org.junit.platform.launcher.TestIdentifier;
 import org.junit.platform.launcher.TestPlan;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
@@ -56,15 +58,17 @@ public class ZeroCodeJupitorLoadPlatform extends JUnitPlatform {
                 LauncherDiscoveryRequestBuilder.request()
                         //.selectors(selectClass(JUnit5Test.class))
                         .selectors(selectMethod(JUnit5Test.class, "testY"))
-                        .selectors(selectMethod(JUnit5Test.class, "testX"))
                         .build();
         final Launcher launcher = LauncherFactory.create();
 
         final SummaryGeneratingListener listener = new SummaryGeneratingListener();
 
+
         launcher.registerTestExecutionListeners(listener);
         //launcher.registerTestExecutionListeners(listener, reportListener);
         TestPlan testPlan = launcher.discover(request);
+
+        //listener.executionFinished(testPlan.getTestIdentifier());
 
 
         ///
