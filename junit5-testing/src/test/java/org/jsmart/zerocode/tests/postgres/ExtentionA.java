@@ -22,18 +22,18 @@ public class ExtentionA implements BeforeAllCallback, AfterAllCallback, BeforeEa
     @Override
     public void afterEach(ExtensionContext extensionContext) throws Exception {
         System.out.println("ExtentionA - afterEach");
-
-        Optional<Method> testMethod = extensionContext.getTestMethod();
-        Method requiredTestMethod = extensionContext.getRequiredTestMethod();
-
-        ExtensionContext extensionContext1 = extensionContext.getParent().get();
-        System.out.println("--- getRoot : " + extensionContext1.getRoot());
-        System.out.println("--- getParent: " + extensionContext1);
-        //System.out.println("--- getRequiredTestMethod: " + extensionContext1.getRequiredTestMethod());
-        System.out.println("--- getTestMethod: " + extensionContext1.getTestMethod());
-        System.out.println("--- getRequiredTestClass: " + extensionContext1.getRequiredTestClass());
-        System.out.println("--- getRequiredTestClass: " + extensionContext1.getTestInstance());
-        System.out.println("--- extensionContext1.getUniqueId(): " + extensionContext1.getUniqueId());
+//
+//        Optional<Method> testMethod = extensionContext.getTestMethod();
+//        Method requiredTestMethod = extensionContext.getRequiredTestMethod();
+//
+//        ExtensionContext extensionContext1 = extensionContext.getParent().get();
+//        System.out.println("--- getRoot : " + extensionContext1.getRoot());
+//        System.out.println("--- getParent: " + extensionContext1);
+//        //System.out.println("--- getRequiredTestMethod: " + extensionContext1.getRequiredTestMethod());
+//        System.out.println("--- getTestMethod: " + extensionContext1.getTestMethod());
+//        System.out.println("--- getRequiredTestClass: " + extensionContext1.getRequiredTestClass());
+//        System.out.println("--- getRequiredTestClass: " + extensionContext1.getTestInstance());
+//        System.out.println("--- extensionContext1.getUniqueId(): " + extensionContext1.getUniqueId());
     }
 
     @Override

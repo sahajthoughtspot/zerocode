@@ -13,7 +13,7 @@ public class JUnit5Test {
     @Test
     public void testX() {
         System.out.println("5 ###########################################testX()");
-        assertTrue(2 == 2);
+        assertTrue(2 == 3);
     }
 
     @Test
