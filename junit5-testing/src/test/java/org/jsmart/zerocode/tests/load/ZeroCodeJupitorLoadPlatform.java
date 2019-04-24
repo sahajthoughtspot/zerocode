@@ -1,7 +1,9 @@
 package org.jsmart.zerocode.tests.load;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
+import org.jsmart.zerocode.core.domain.TestMapping;
 import org.jsmart.zerocode.core.domain.builders.ZeroCodeExecResultBuilder;
 import org.jsmart.zerocode.core.domain.builders.ZeroCodeReportBuilder;
 import org.jsmart.zerocode.core.logbuilder.LogCorrelationshipPrinter;
@@ -38,7 +40,7 @@ public class ZeroCodeJupitorLoadPlatform extends JUnitPlatform {
 
     @Override
     public Description getDescription() {
-        testDescription = createTestDescription(testClass, "a load test");
+        testDescription = createTestDescription(testClass, "testY");
         return testDescription;
     }
 
@@ -54,11 +56,23 @@ public class ZeroCodeJupitorLoadPlatform extends JUnitPlatform {
         notifier.fireTestStarted(testDescription);
         final String logPrefixRelationshipId = prepareRequestReport(testDescription);
 
+        ///
         final LauncherDiscoveryRequest request =
                 LauncherDiscoveryRequestBuilder.request()
                         //.selectors(selectClass(JUnit5Test.class))
+                        //.selectors(selectMethod(JUnit5Test.class, "testX"),selectMethod(JUnit5Test.class, "testY"))
                         .selectors(selectMethod(JUnit5Test.class, "testY"))
+                        //.selectors(selectMethod(testMappings.get(0).testClass(), testMappings.get(0).testMethod()))
                         .build();
+
+//        final LauncherDiscoveryRequestBuilder requestBuilder = LauncherDiscoveryRequestBuilder.request();
+//        testMappings.forEach(thisTest -> {
+//            requestBuilder.selectors(selectMethod(thisTest.getClass(), thisTest.testMethod()));
+//        });
+//        LauncherDiscoveryRequest request = requestBuilder.build();
+
+        ///
+
         final Launcher launcher = LauncherFactory.create();
 
         final SummaryGeneratingListener listener = new SummaryGeneratingListener();
