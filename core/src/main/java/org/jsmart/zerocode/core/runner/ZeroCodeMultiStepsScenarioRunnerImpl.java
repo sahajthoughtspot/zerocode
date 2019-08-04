@@ -33,7 +33,6 @@ import static org.jsmart.zerocode.core.domain.ZerocodeConstants.PROPERTY_KEY_POR
 import static org.jsmart.zerocode.core.domain.builders.ZeroCodeExecResultBuilder.newInstance;
 import static org.jsmart.zerocode.core.engine.mocker.RestEndPointMocker.wireMockServer;
 import static org.jsmart.zerocode.core.utils.RunnerUtils.getFullyQualifiedUrl;
-import static org.jsmart.zerocode.core.utils.RunnerUtils.loopCount;
 import static org.jsmart.zerocode.core.utils.ServiceTypeUtils.serviceType;
 import static org.jsmart.zerocode.core.utils.SmartUtils.prettyPrintJson;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -130,8 +129,8 @@ public class ZeroCodeMultiStepsScenarioRunnerImpl implements ZeroCodeMultiStepsS
                     retryTillSuccess = true;
                 }
                 final int stepLoopTimes = thisStep.getLoop() == null ? 1 : thisStep.getLoop();
-                for (int i = 0; i < stepLoopTimes; i++) {
-                    LOGGER.info("\n### Executing Step -->> Count No: " + i);
+                for (int stepCount = 0; stepCount < stepLoopTimes; stepCount++) {
+                    LOGGER.info("\n### Executing Step -->> Count No: " + stepCount);
                     logCorrelationshipPrinter = LogCorrelationshipPrinter.newInstance(LOGGER);
                     logCorrelationshipPrinter.stepLoop(stepCount);
 
@@ -183,7 +182,7 @@ public class ZeroCodeMultiStepsScenarioRunnerImpl implements ZeroCodeMultiStepsS
                                 case REST_CALL:
                                     serviceName = getFullyQualifiedUrl(serviceName, host, port, applicationContext);
                                     logCorrelationshipPrinter.aRequestBuilder()
-                                            .stepLoop(i)
+                                            .stepLoop(stepCount)
                                             .relationshipId(logPrefixRelationshipId)
                                             .requestTimeStamp(requestTimeStamp)
                                             .step(thisStepName)
@@ -197,7 +196,7 @@ public class ZeroCodeMultiStepsScenarioRunnerImpl implements ZeroCodeMultiStepsS
 
                                 case JAVA_CALL:
                                     logCorrelationshipPrinter.aRequestBuilder()
-                                            .stepLoop(i)
+                                            .stepLoop(stepCount)
                                             .relationshipId(logPrefixRelationshipId)
                                             .requestTimeStamp(requestTimeStamp)
                                             .step(thisStepName)
@@ -215,7 +214,7 @@ public class ZeroCodeMultiStepsScenarioRunnerImpl implements ZeroCodeMultiStepsS
                                     }
                                     printBrokerProperties();
                                     logCorrelationshipPrinter.aRequestBuilder()
-                                            .stepLoop(i)
+                                            .stepLoop(stepCount)
                                             .relationshipId(logPrefixRelationshipId)
                                             .requestTimeStamp(requestTimeStamp)
                                             .step(thisStepName)
@@ -230,7 +229,7 @@ public class ZeroCodeMultiStepsScenarioRunnerImpl implements ZeroCodeMultiStepsS
 
                                 case NONE:
                                     logCorrelationshipPrinter.aRequestBuilder()
-                                            .stepLoop(i)
+                                            .stepLoop(stepCount)
                                             .relationshipId(logPrefixRelationshipId)
                                             .requestTimeStamp(requestTimeStamp)
                                             .step(thisStepName)
@@ -393,13 +392,13 @@ public class ZeroCodeMultiStepsScenarioRunnerImpl implements ZeroCodeMultiStepsS
                              * Build step report for each step
                              * Add the report step to the result step list.
                              */
-                            reportResultBuilder.step(logCorrelationshipPrinter.buildReportSingleStep());
+                            execResultBuilder.step(logCorrelationshipPrinter.buildReportSingleStep());
 
                             /*
                              * FAILED and Exception reports are generated here
                              */
                             if (!stepOutcomeGreen) {
-                                reportBuilder.result(reportResultBuilder.build());
+                                reportBuilder.result(execResultBuilder.build());
                                 reportBuilder.printToFile(scenario.getScenarioName() + logCorrelationshipPrinter.getCorrelationId() + ".json");
                             }
                         }
