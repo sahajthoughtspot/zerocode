@@ -60,7 +60,7 @@
 
     <properties>
         <!-- This project properties -->
-        <junit5.version>5.4.2</junit5.version>
+        <junit5.version>5.10.0</junit5.version>
         <junit.vintage.version>5.4.2</junit.vintage.version>
         <junit-platform-runner.version>1.4.2</junit-platform-runner.version>
         <junit.version>4.12</junit.version>
